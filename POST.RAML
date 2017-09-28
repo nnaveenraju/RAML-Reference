@@ -1,0 +1,326 @@
+#%RAML 0.8
+title: dev-api-bisk-ecommorder
+version: v1
+
+baseUri: https://dev-api-bisk-save-ecommorder.cloudhub.io
+mediaType: application/json
+protocols: [HTTPS]
+
+traits: 
+  - client_id_required:
+      description: |
+        Client ID and Secrets are required
+      headers: 
+        client_id:
+          type: string
+          required: true
+        client_secret:
+          type: string
+          required: true        
+        correlationid:
+          type: string
+          required: true
+          
+schemas: 
+  - save-order-schema : |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#", 
+        "definitions": {}, 
+        "id": "http://example.com/example.json", 
+        "properties": {
+          "bill_to_address_city": {
+            "default": "Tampa", 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/bill_to_address_city", 
+            "title": "The bill_to_address_city schema", 
+            "type": "string"
+          }, 
+          "bill_to_address_country": {
+            "default": "US", 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/bill_to_address_country", 
+            "title": "The bill_to_address_country schema", 
+            "type": "string"
+          }, 
+          "bill_to_address_line1": {
+            "default": "Address line 2", 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/bill_to_address_line1", 
+            "title": "The bill_to_address_line1 schema", 
+            "type": "string"
+          }, 
+          "bill_to_address_postal_code": {
+            "default": "33610", 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/bill_to_address_postal_code", 
+            "title": "The bill_to_address_postal_code schema", 
+            "type": "string"
+          }, 
+          "bill_to_address_state": {
+            "default": "FL", 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/bill_to_address_state", 
+            "title": "The bill_to_address_state schema", 
+            "type": "string"
+          }, 
+          "bill_to_email": {
+            "default": "email@email.com", 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/bill_to_email", 
+            "title": "The bill_to_email schema", 
+            "type": "string"
+          }, 
+          "bill_to_forename": {
+            "default": "forename", 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/bill_to_forename", 
+            "title": "The bill_to_forename schema", 
+            "type": "string"
+          }, 
+          "bill_to_surname": {
+            "default": "surname", 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/bill_to_surname", 
+            "title": "The bill_to_surname schema", 
+            "type": "string"
+          }, 
+          "course_selected": {
+            "id": "/properties/course_selected", 
+            "items": {
+              "id": "/properties/course_selected/items", 
+              "properties": {
+                "course_code": {
+                  "default": "VIL60", 
+                  "description": "An explanation about the purpose of this instance.", 
+                  "id": "/properties/course_selected/items/properties/course_code", 
+                  "title": "The course_code schema", 
+                  "type": "string"
+                }, 
+                "course_id": {
+                  "default": 2652.0, 
+                  "description": "An explanation about the purpose of this instance.", 
+                  "id": "/properties/course_selected/items/properties/course_id", 
+                  "title": "The course_id schema", 
+                  "type": "number"
+                }, 
+                "course_price": {
+                  "default": 1000.0, 
+                  "description": "An explanation about the purpose of this instance.", 
+                  "id": "/properties/course_selected/items/properties/course_price", 
+                  "title": "The course_price schema", 
+                  "type": "number"
+                }, 
+                "discount_amount": {
+                  "default": 150.0, 
+                  "description": "An explanation about the purpose of this instance.", 
+                  "id": "/properties/course_selected/items/properties/discount_amount", 
+                  "title": "The discount_amount schema", 
+                  "type": "number"
+                }, 
+                "salesforce_course_id": {
+                  "default": "a2N2C0000008YE8UAM", 
+                  "description": "An explanation about the purpose of this instance.", 
+                  "id": "/properties/course_selected/items/properties/salesforce_course_id", 
+                  "title": "The salesforce_course_id schema", 
+                  "type": "string"
+                }
+              }, 
+              "type": "object"
+            }, 
+            "type": "array"
+          }, 
+          "mkt_click_id": {
+            "default": "12333443323", 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/mkt_click_id", 
+            "title": "The mkt_click_id schema", 
+            "type": "string"
+          }, 
+          "mkt_content": {
+            "default": "Marketing content goes here", 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/mkt_content", 
+            "title": "The mkt_content schema", 
+            "type": "string"
+          }, 
+          "mkt_count_of_page_views": {
+            "default": 12.0, 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/mkt_count_of_page_views", 
+            "title": "The mkt_count_of_page_views schema", 
+            "type": "number"
+          }, 
+          "mkt_count_of_sessions": {
+            "default": 12.0, 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/mkt_count_of_sessions", 
+            "title": "The mkt_count_of_sessions schema", 
+            "type": "number"
+          }, 
+          "mkt_landing_page_url": {
+            "default": "www.landingpage.com", 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/mkt_landing_page_url", 
+            "title": "The mkt_landing_page_url schema", 
+            "type": "string"
+          }, 
+          "mkt_term": {
+            "default": "Term", 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/mkt_term", 
+            "title": "The mkt_term schema", 
+            "type": "string"
+          }, 
+          "mkt_visitor_id": {
+            "default": "12333433", 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/mkt_visitor_id", 
+            "title": "The mkt_visitor_id schema", 
+            "type": "string"
+          }, 
+          "payment_option": {
+            "default": "self_pay / us_military / company", 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/payment_option", 
+            "title": "The payment_option schema", 
+            "type": "string"
+          }, 
+          "program_id": {
+            "default": 169.0, 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/program_id", 
+            "title": "The program_id schema", 
+            "type": "number"
+          }, 
+          "salesforce_program_id": {
+            "default": "a032C000000knITQAY", 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/salesforce_program_id", 
+            "title": "The salesforce_program_id schema", 
+            "type": "string"
+          }, 
+          "salesforce_student_id": {
+            "default": "a032C000000knITQAY", 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/salesforce_student_id", 
+            "title": "The salesforce_student_id schema", 
+            "type": "string"
+          }, 
+          "salesforce_university_id": {
+            "default": "a032C000000knITQAY", 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/salesforce_university_id", 
+            "title": "The salesforce_university_id schema", 
+            "type": "string"
+          }, 
+          "startdate": {
+            "default": "2017-03-06", 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/startdate", 
+            "title": "The startdate schema", 
+            "type": "string"
+          }, 
+          "status": {
+            "default": "pending/completed", 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/status", 
+            "title": "The status schema", 
+            "type": "string"
+          }, 
+          "total_discount": {
+            "default": 300.0, 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/total_discount", 
+            "title": "The total_discount schema", 
+            "type": "number"
+          }, 
+          "total_price": {
+            "default": 1765.0, 
+            "description": "An explanation about the purpose of this instance.", 
+            "id": "/properties/total_price", 
+            "title": "The total_price schema", 
+            "type": "number"
+          }
+        }, 
+        "type": "object"
+      }
+          
+/save-order:
+  displayName: Save order after the user completes the enrollment
+  post:
+    is: [client_id_required]
+    body: 
+      application/json:
+        example: |
+          {
+            "status" : "pending/completed",
+            "salesforce_student_id":"a032C000000knITQAY",
+            "salesforce_program_id": "a032C000000knITQAY",
+            "program_id" : 169,
+            "salesforce_university_id":"a032C000000knITQAY",
+            "startdate": "2017-03-06",
+            "payment_option":"self_pay / us_military / company",
+            "total_price" : 1765.00,
+            "total_discount" : 300.00,
+            "mkt_click_id":"12333443323",
+            "mkt_landing_page_url" : "www.landingpage.com",
+            "mkt_visitor_id" : "12333433",
+            "mkt_content": "Marketing content goes here",
+            "mkt_term" : "Term",
+            "mkt_count_of_sessions" : 12,
+            "mkt_count_of_page_views" : 12,
+            "bill_to_address_country" : "US",
+            "bill_to_address_city" : "Tampa",
+            "bill_to_address_state" : "FL",
+            "bill_to_address_line1" : "Address line 2",
+            "bill_to_email" : "email@email.com",
+            "bill_to_forename" : "forename",
+            "bill_to_surname" : "surname",
+            "bill_to_address_postal_code" : "33610",
+            "course_selected": [
+              {
+                "course_id": 2652,
+                "course_code": "VIL60",
+                "salesforce_course_id": "a2N2C0000008YE8UAM",
+                "course_price" : 1000.00,
+                "discount_amount" : 150.00
+              },
+              {
+                "course_id": 2653,
+                "course_code": "VIL60",
+                "salesforce_course_id": "a2N2C0000008YE8UAM",
+                "course_price" : 800.00,
+                "discount_amount" : 150.00
+                }
+            ]
+          }
+        schema: save-order-schema
+            
+            
+/staged-enrollment-staus:
+  get:
+    is: [client_id_required]
+    queryParameters: 
+      student_id:
+        type: string
+        required: true
+    responses: 
+      200:
+        body: 
+          application/json:
+            example: |
+              {
+                "student_id": "a2N2C0000008YE8UAM",
+                "school_id": "UC115",
+                "program_id": "a2N2C0000008YE8UAM",
+                "selected_courses": [
+                  { 
+                    "course_id": "2652"
+                  },
+                  { 
+                    "course_id": "2653"
+                  }
+                ],
+                "start_date": "2017-03-06",
+                "payment_method": "myself"
+              }            
